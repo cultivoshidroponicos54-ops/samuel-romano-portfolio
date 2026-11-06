@@ -2,11 +2,11 @@
 
 Portafolio de Samuel Romano Sánchez completamente en español, desarrollado con TanStack Start y React. `src/routes/index.tsx` contiene las seis secciones y la navegación. `src/routes/__root.tsx` proporciona el documento, el idioma español y metadatos. `src/lib/site.ts` centraliza la identidad y las descripciones.
 
-`src/styles.css` define la identidad visual, variables de ambos temas, diseño adaptable, animaciones y movimiento reducido. El color principal es #80aad3. Conservar la composición editorial de la referencia y no alterar los rasgos ni las proporciones de las fotografías.
+`src/styles.css` define la identidad visual, variables de ambos temas, diseño adaptable, animaciones y movimiento reducido. El color principal es #80aad3. El tema oscuro (negro con luces y degradados azules) es el predeterminado; el claro se activa con el botón del encabezado. Conservar la composición editorial de la referencia y no alterar los rasgos ni las proporciones de las fotografías.
 
 `public/img/samuel-inicio.png` es el retrato de Inicio; `public/img/samuel-sobre-mi.png` es el retrato diferente para Sobre mí. Las imágenes usan Netlify Image CDN. `public/icons/` contiene los iconos de herramientas. No agregar imágenes de ejemplo ni proyectos inventados.
 
-`src/lib/projects.ts` mantiene las listas editoriales de diseños y videos. Están vacías hasta que Samuel aporte trabajos reales. Los diseños disponen de un diálogo nativo accesible; los videos usan controles nativos. No hay cargas de usuario, autenticación ni persistencia de datos.
+`src/lib/projects.ts` mantiene las listas editoriales de diseños y videos. Los diseños siguen vacíos hasta que Samuel aporte trabajos reales; los cinco videos verticales reales están en `public/videos/` en el orden indicado por Samuel. Los diseños disponen de un diálogo nativo accesible; los videos usan controles nativos. No hay cargas de usuario, autenticación ni persistencia de datos.
 
 El contenido de la antigua plantilla se eliminó. La infraestructura de Content Collections permanece disponible, con directorios vacíos, pero no alimenta la página actual. Los componentes de formulario heredados no se utilizan ni están publicados.
 
