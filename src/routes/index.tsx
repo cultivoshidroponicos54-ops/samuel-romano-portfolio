@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
-import { ArrowUpRight, ArrowDown, ArrowUp, Sun, Moon, Menu, X, PenTool, Film, Play, Mail, MessageCircle, Plus, Sparkles, Volume2, VolumeX } from 'lucide-react'
+import { ArrowUpRight, ArrowDown, ArrowUp, Sun, Moon, Menu, X, PenTool, Film, Play, Mail, MessageCircle, Plus, Sparkles, Volume2, VolumeX, Pause, RotateCcw, RotateCw } from 'lucide-react'
 import { pageMeta, site } from '../lib/site'
 import { designProjects, videoProjects } from '../lib/projects'
 import { Instagram, Linkedin } from '../components/SocialIcons'
@@ -29,7 +29,6 @@ function PortfolioHome() {
   const [menu, setMenu] = useState(false)
   const [active, setActive] = useState('inicio')
   const [selected, setSelected] = useState<(typeof designProjects)[number] | null>(null)
-  const [soundVideo, setSoundVideo] = useState<number | null>(null)
   const dialog = useRef<HTMLDialogElement>(null)
   useEffect(() => {
     const observer = new IntersectionObserver(entries => entries.forEach(entry => entry.target.classList.toggle('visible', entry.isIntersecting)), { threshold: .08 })
@@ -53,7 +52,7 @@ function PortfolioHome() {
     <section id="sobre-mi" className="section about"><SectionLabel number="02" label="Un poco sobre mí"/><div className="about-grid"><div className="about-photo reveal"><span className="photo-backdrop"/><img src={picture('samuel-sobre-mi.png')} alt="Samuel Romano Sánchez, retrato para Sobre mí" loading="lazy"/><span className="photo-caption">Detrás de cada idea, una mirada propia. <ArrowUpRight size={18}/></span></div><div className="about-copy reveal"><p className="eyebrow">CREATIVIDAD EN CADA DETALLE</p><h2>¡HOLA<span>!</span><br/>SOY SAMUEL<span>.</span></h2><p>Mi forma de expresarme está en lo visual: el diseño gráfico y la edición de videos.</p><p>Este es mi espacio para compartir ideas, explorar imágenes y dar forma a historias. Una mirada personal que une diseño y movimiento.</p><div className="discipline-tags"><span><PenTool size={16}/> Diseño gráfico</span><span><Film size={16}/> Edición audiovisual</span></div><a className="text-link" href="#contacto">Hablemos de tu próxima idea <ArrowUpRight size={21}/></a></div></div></section>
     <section id="herramientas" className="section tools"><SectionLabel number="03" label="Mi caja de herramientas"/><div className="section-heading reveal"><h2>DE LA IDEA<br/>A LA <span className="marked">FORMA.</span></h2><p>Las herramientas que acompañan<br/>mi proceso creativo.</p></div><div className="tools-grid tools-loop reveal"><LogoLoop logos={tools} renderItem={renderTool} speed={100} direction="left" logoHeight={66} gap={1} hoverSpeed={0} scaleOnHover={false} ariaLabel="Herramientas de trabajo"/></div></section>
     <section id="diseno" className="section designs"><SectionLabel number="04" label="Exploraciones visuales"/><div className="section-heading reveal"><h2>DISEÑO<br/><span className="marked">GRÁFICO.</span></h2><p>Un espacio para las ideas<br/>que toman forma.</p></div>{designProjects.length ? <div className="project-grid">{designProjects.map(project => <button className="project reveal" key={project.title} onClick={() => setSelected(project)}><img src={project.image} alt={project.alt} loading="lazy"/><span>{project.title}<Plus/></span></button>)}</div> : <div className="empty-design reveal"><div className="empty-art" aria-hidden="true"><div className="art-frame"><PenTool size={65} strokeWidth={1}/><span className="corner c1"/><span className="corner c2"/><span className="corner c3"/><span className="corner c4"/></div><span className="art-cross">+</span><span className="art-circle"/></div><div><span className="small-label">LA GALERÍA ESTÁ EN CAMINO</span><h3>Las próximas ideas<br/>tienen su lugar aquí<span>.</span></h3><p>Próximamente compartiré mis trabajos de diseño gráfico.</p><a href="#contacto" className="text-link">¿Creamos algo juntos? <ArrowUpRight size={21}/></a></div></div>}</section>
-    <section id="videos" className="section videos"><SectionLabel number="05" label="Historias en movimiento"/><div className="section-heading reveal"><h2>EDICIÓN<br/>DE <span className="marked">VIDEOS.</span></h2><p>Ritmo, imagen y narrativa.<br/>Una nueva forma de contar.</p></div>{videoProjects.length ? <div className="video-grid">{videoProjects.map((video,i) => <VideoCard key={video.src} video={video} index={i} soundOn={soundVideo === i} onToggleSound={() => setSoundVideo(current => current === i ? null : i)}/>)}</div> : <div className="empty-video reveal"><div className="video-top"><span><i/> PRÓXIMAMENTE</span><Film size={23}/></div><div className="video-center"><span className="play-symbol"><Play size={31} fill="currentColor"/></span><h3>La próxima historia<br/>está por comenzar.</h3><p>Los proyectos audiovisuales aparecerán aquí.</p></div><div className="video-bottom"><span>EDICIÓN AUDIOVISUAL</span><span className="timeline"/><span>EN PREPARACIÓN</span></div></div>}</section>
+    <section id="videos" className="section videos"><SectionLabel number="05" label="Historias en movimiento"/><div className="section-heading reveal"><h2>EDICIÓN<br/>DE <span className="marked">VIDEOS.</span></h2><p>Ritmo, imagen y narrativa.<br/>Una nueva forma de contar.</p></div>{videoProjects.length ? <div className="video-grid">{videoProjects.map((video,i) => <VideoCard key={video.src} video={video} index={i}/>)}</div> : <div className="empty-video reveal"><div className="video-top"><span><i/> PRÓXIMAMENTE</span><Film size={23}/></div><div className="video-center"><span className="play-symbol"><Play size={31} fill="currentColor"/></span><h3>La próxima historia<br/>está por comenzar.</h3><p>Los proyectos audiovisuales aparecerán aquí.</p></div><div className="video-bottom"><span>EDICIÓN AUDIOVISUAL</span><span className="timeline"/><span>EN PREPARACIÓN</span></div></div>}</section>
     <section id="contacto" className="section contact"><SectionLabel number="06" label="El comienzo de una buena idea"/><div className="contact-heading reveal"><p className="eyebrow">¿TIENES ALGO EN MENTE?</p><h2>HAGAMOS<br/>QUE <span>SUCEDA<ArrowUpRight/></span></h2><p>Una idea, un proyecto o una conversación.<br/>Me encantará saber de ti.</p></div><div className="contact-links reveal">{[{name:'WhatsApp',label:'+54 9 3834 604640',url:'https://wa.me/5493834604640',Icon:MessageCircle},{name:'Instagram',label:'@samusanchez07',url:'https://www.instagram.com/samusanchez07/',Icon:Instagram},{name:'LinkedIn',label:'Samuel Romano Sánchez',url:'https://www.linkedin.com/in/samuel-romano-s%C3%A1nchez-21574b449/',Icon:Linkedin},{name:'Correo electrónico',label:'sammrsanchez07@gmail.com',url:'mailto:sammrsanchez07@gmail.com',Icon:Mail}].map(({name,label,url,Icon}) => <a href={url} key={name} target={url.startsWith('mailto') ? undefined : '_blank'} rel="noopener noreferrer"><Icon size={24}/><div><span>{name}</span><strong>{label}</strong></div><ArrowUpRight className="contact-arrow" size={23}/></a>)}</div></section>
     <footer><a href="#inicio" className="monogram" aria-label="Volver al inicio">sr<span>•</span></a><p>SAMUEL ROMANO SÁNCHEZ<br/><span>Diseño gráfico & edición de videos</span></p><a href="#inicio" className="back-top">Volver arriba <ArrowUp size={18}/></a></footer>
     <dialog ref={dialog} onClose={() => setSelected(null)} onClick={e => { if (e.target === e.currentTarget) dialog.current?.close() }}><button className="icon-button close-dialog" onClick={() => dialog.current?.close()} aria-label="Cerrar imagen"><X/></button>{selected && <><img src={selected.image} alt={selected.alt}/><h2>{selected.title}</h2></>}</dialog>
@@ -62,23 +61,79 @@ function PortfolioHome() {
 function SectionLabel({number,label}: {number:string,label:string}) { return <div className="section-label"><span>{number} / {label}</span><div/><ArrowUpRight size={22}/></div> }
 
 type VideoProject = (typeof videoProjects)[number]
-function VideoCard({video,index,soundOn,onToggleSound}: {video:VideoProject,index:number,soundOn:boolean,onToggleSound:()=>void}) {
+const SKIP_SECONDS = 5
+const formatTime = (seconds: number) => {
+  const total = Number.isFinite(seconds) ? Math.max(0, Math.floor(seconds)) : 0
+  return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, '0')}`
+}
+function VideoCard({video,index}: {video:VideoProject,index:number}) {
   const ref = useRef<HTMLVideoElement>(null)
+  const userPaused = useRef(false)
+  const [playing, setPlaying] = useState(false)
+  const [soundOn, setSoundOn] = useState(false)
+  const [time, setTime] = useState(0)
+  const [duration, setDuration] = useState(0)
+  const label = `${video.title} · Video ${index+1}`
   useEffect(() => {
     const el = ref.current
     if (!el) return
     el.muted = true
     el.defaultMuted = true
-    const play = () => { el.play().catch(() => {}) }
-    const observer = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) play(); else el.pause() }, { threshold: .25 })
+    el.loop = true
+    const play = () => { el.play().catch(() => { if (!el.muted) { el.muted = true; setSoundOn(false); el.play().catch(() => {}) } }) }
+    const observer = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) { if (!userPaused.current) play() } else if (!el.paused) el.pause() }, { threshold: .25 })
     observer.observe(el)
-    return () => observer.disconnect()
+    const sync = () => setPlaying(!el.paused)
+    const tick = () => setTime(el.currentTime)
+    const meta = () => { setDuration(el.duration || 0); setTime(el.currentTime) }
+    const volume = () => setSoundOn(!el.muted)
+    el.addEventListener('play', sync); el.addEventListener('pause', sync); el.addEventListener('playing', sync)
+    el.addEventListener('timeupdate', tick); el.addEventListener('seeked', tick)
+    el.addEventListener('loadedmetadata', meta); el.addEventListener('durationchange', meta)
+    el.addEventListener('volumechange', volume)
+    if (el.readyState >= 1) meta()
+    return () => {
+      observer.disconnect()
+      el.removeEventListener('play', sync); el.removeEventListener('pause', sync); el.removeEventListener('playing', sync)
+      el.removeEventListener('timeupdate', tick); el.removeEventListener('seeked', tick)
+      el.removeEventListener('loadedmetadata', meta); el.removeEventListener('durationchange', meta)
+      el.removeEventListener('volumechange', volume)
+    }
   }, [])
-  useEffect(() => {
+  const togglePlay = () => {
     const el = ref.current
     if (!el) return
-    el.muted = !soundOn
-    if (el.paused && soundOn) el.play().catch(() => { el.muted = true })
-  }, [soundOn])
-  return <article className="video-card reveal" style={{'--delay':`${(index%3)*90}ms`} as React.CSSProperties}><span className="video-number">0{index+1}</span><div className="video-frame"><video ref={ref} loop muted playsInline preload="metadata" poster={video.poster} aria-label={`${video.title} · Video ${index+1}`}><source src={video.poster ? video.src : `${video.src}#t=0.1`} type="video/mp4"/>Tu navegador no admite la reproducción de este video.</video><button type="button" className="icon-button sound-toggle" onClick={onToggleSound} aria-pressed={soundOn} aria-label={soundOn ? `Silenciar ${video.title} · Video ${index+1}` : `Activar sonido de ${video.title} · Video ${index+1}`}>{soundOn ? <Volume2 size={18}/> : <VolumeX size={18}/>}</button></div><h3>{video.title}</h3></article>
+    if (el.paused) { userPaused.current = false; el.play().catch(() => { el.muted = true; el.play().catch(() => {}) }) }
+    else { userPaused.current = true; el.pause() }
+  }
+  const toggleSound = () => {
+    const el = ref.current
+    if (!el) return
+    el.muted = !el.muted
+    if (!el.muted && el.paused && !userPaused.current) el.play().catch(() => { el.muted = true })
+  }
+  const seekTo = (value: number) => {
+    const el = ref.current
+    if (!el || !duration) return
+    el.currentTime = Math.min(Math.max(value, 0), duration)
+    setTime(el.currentTime)
+  }
+  const skip = (amount: number) => {
+    const el = ref.current
+    if (!el || !duration) return
+    seekTo(el.currentTime + amount)
+  }
+  const progress = duration ? (time / duration) * 100 : 0
+  return <article className="video-card reveal" style={{'--delay':`${(index%3)*90}ms`} as React.CSSProperties}><span className="video-number">0{index+1}</span><div className="video-frame"><video ref={ref} loop muted playsInline preload="metadata" poster={video.poster} aria-label={label} onClick={togglePlay}><source src={video.poster ? video.src : `${video.src}#t=0.1`} type="video/mp4"/>Tu navegador no admite la reproducción de este video.</video>
+    <div className="video-controls" role="group" aria-label={`Controles de ${label}`}>
+      <input type="range" className="video-progress" min={0} max={duration || 0} step={0.05} value={Math.min(time, duration || 0)} disabled={!duration} onChange={e => seekTo(Number(e.currentTarget.value))} style={{'--progress':`${progress}%`} as React.CSSProperties} aria-label={`Progreso de ${label}`} aria-valuetext={`${formatTime(time)} de ${formatTime(duration)}`}/>
+      <div className="video-controls-row">
+        <button type="button" className="video-control video-control-main" onClick={togglePlay} aria-label={playing ? `Pausar ${label}` : `Reproducir ${label}`}>{playing ? <Pause size={16} fill="currentColor"/> : <Play size={16} fill="currentColor"/>}</button>
+        <button type="button" className="video-control" onClick={() => skip(-SKIP_SECONDS)} disabled={!duration} aria-label={`Retroceder ${SKIP_SECONDS} segundos en ${label}`}><RotateCcw size={15}/></button>
+        <button type="button" className="video-control" onClick={() => skip(SKIP_SECONDS)} disabled={!duration} aria-label={`Adelantar ${SKIP_SECONDS} segundos en ${label}`}><RotateCw size={15}/></button>
+        <span className="video-time" aria-hidden="true">{formatTime(time)} / {formatTime(duration)}</span>
+        <button type="button" className="video-control sound-toggle" onClick={toggleSound} aria-pressed={soundOn} aria-label={soundOn ? `Silenciar ${label}` : `Activar sonido de ${label}`}>{soundOn ? <Volume2 size={16}/> : <VolumeX size={16}/>}</button>
+      </div>
+    </div>
+  </div><h3>{video.title}</h3></article>
 }
