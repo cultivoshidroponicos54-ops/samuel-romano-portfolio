@@ -11,3 +11,20 @@ html[data-theme=dark] .tools-loop .logoloop__item{box-shadow:1px 0 0 #1c2d4a}
 .tools-loop .tool{width:210px;box-sizing:border-box}
 .tools-loop .tool-icon img{width:100%;height:100%;pointer-events:none}
 @media(max-width:700px){.tools-loop .tool{width:160px}}
+
+/* Composición de fotografías principales */
+.about-photo img{position:relative;z-index:1;display:block}
+.photo-backdrop{left:-7%;bottom:52px;width:96%;height:60%;z-index:0}
+.photo-caption{position:relative;z-index:1}
+@media(max-width:1000px){.hero{min-height:640px}.hero-portrait{height:460px}.photo-backdrop{left:-5%;width:94%}}
+@media(max-width:700px){
+.hero{min-height:0;display:flex;flex-direction:column;padding-bottom:20px}
+.hero-type{order:1}
+.hero-intro{order:2;margin-top:30px}
+.hero-portrait{order:3;position:relative;right:auto;bottom:auto;align-self:center;width:min(88%,380px);height:clamp(320px,92vw,420px);margin-top:26px}
+.about-grid{gap:22px;margin-top:26px}
+.about-photo{width:86%;max-width:380px}
+.about-photo img{height:clamp(300px,88vw,380px)}
+.photo-backdrop{left:-4%;width:92%;bottom:52px;height:58%}
+}
+@media(min-width:701px) and (max-width:1000px){.about-grid{grid-template-columns:1fr 1fr;gap:5%;margin-top:40px}}
