@@ -68,3 +68,20 @@ html[data-theme=dark] .tools-loop .logoloop__item{box-shadow:1px 0 0 #1c2d4a}
 .hero-portrait{height:auto;align-self:flex-end;margin-right:-8.14%;width:min(88%,380px,calc(116.28% - 96px))}
 .scroll-cue{left:16px;bottom:16px;max-width:64px;font-size:11px;gap:8px;line-height:1.35}
 }
+.folder-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.folder{position:relative;text-align:left;padding-top:22px;color:var(--ink);cursor:pointer;transition:transform .35s}
+.folder-tab{position:absolute;top:0;left:0;width:42%;height:30px;background:var(--card);border:1px solid var(--line);border-bottom:0;border-radius:8px 14px 0 0;font-size:10px;font-weight:700;padding:5px 14px;color:var(--accent)}
+.folder-body{position:relative;display:flex;flex-direction:column;gap:10px;min-height:250px;padding:28px 22px 22px;background:var(--card);border:1px solid var(--line);border-radius:0 10px 10px 10px;overflow:hidden;transition:border-color .35s,box-shadow .35s}
+.folder-sheets{position:absolute;right:-20px;top:-20px;width:90px;height:90px;border:1px solid var(--accent);border-radius:8px;transform:rotate(14deg);opacity:.35;transition:transform .35s,opacity .35s}
+.folder h3{font-family:'Archivo Black',sans-serif;font-weight:400;font-size:21px;line-height:1.1;margin-top:auto}
+.folder p{font-size:12px;color:var(--muted)}
+.folder-open{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:700;color:var(--accent)}
+.folder:hover,.folder:focus-visible{transform:translateY(-6px)}
+.folder:hover .folder-body,.folder:focus-visible .folder-body{border-color:var(--accent);box-shadow:0 25px 60px -30px #2f6bffaa}
+.folder:hover .folder-sheets{transform:rotate(4deg) translate(-8px,10px);opacity:.8}
+html[data-theme=dark] .folder-body,html[data-theme=dark] .folder-tab{background:linear-gradient(150deg,#0e1a33,#080d18);border-color:#2b4a7a}
+.folder-dialog{width:min(1000px,90vw)}
+.folder-dialog h2{font-family:'Archivo Black',sans-serif;font-size:30px;margin:6px 0 24px}
+.folder-empty{color:var(--muted);font-size:14px;padding:30px 0}
+@media(max-width:1100px){.folder-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.folder-grid{grid-template-columns:1fr}.folder-body{min-height:200px}}
